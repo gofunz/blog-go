@@ -7,14 +7,17 @@
 
 GET http://{{host}}/articles HTTP/1.1
 Content-Type: {{contentType}}
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
 
 ###
 
 POST http://{{host}}/articles HTTP/1.1
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
 Content-Type: {{contentType}}
+Cache-Control: "no-cache"
 
 {
-    "title": "My Second article",
-    "description": "Yo ~ ",
-    "content": "Today is good day."
+    "title": "My {{$randomInt 1 10000}} article",
+    "description": "Yo ~ {{$randomInt 1 10000}}",
+    "content": "Total visits {{$randomInt 1 10000}} ."
 }
