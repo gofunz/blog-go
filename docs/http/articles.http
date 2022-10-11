@@ -1,6 +1,6 @@
 @hostname = localhost
 @port = 8000
-@host = {{hostname}}:{{port}}
+@host = {{hostname}}:{{port}}/api
 @contentType = application/json
 
 ###

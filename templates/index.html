@@ -1,0 +1,15 @@
+{{ template "header.html"}}
+
+<div class="row">
+  {{range .articles}}
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{.Title}}</h5>
+        <p class="card-text">{{.Description}}</p>
+      </div>
+    </div>
+  </div>
+  {{end}}
+</div>
+{{ template "footer.html"}}

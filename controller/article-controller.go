@@ -14,6 +14,7 @@ import (
 type ArticleController interface {
 	FindAll(ctx *gin.Context)
 	Save(ctx *gin.Context)
+	ShowAll(ctx *gin.Context)
 }
 
 type controller struct {
@@ -62,4 +63,13 @@ func (c *controller) Save(ctx *gin.Context) {
 
 func (c *controller) FindAll(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, c.service.FindAll())
+}
+
+func (c *controller) ShowAll(ctx *gin.Context) {
+	articles := c.service.FindAll()
+	data := gin.H{
+		"title":    "Article Page",
+		"articles": articles,
+	}
+	ctx.HTML(http.StatusOK, "index.html", data)
 }

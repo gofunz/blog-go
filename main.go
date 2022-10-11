@@ -32,17 +32,28 @@ func main() {
 	router := gin.New()
 	router.Use(gin.Recovery(), middleware.Logger(), middleware.BasicAuth())
 
-	articles := router.Group("articles")
+	router.Static("/css", "./templates/css")
+	router.LoadHTMLGlob("templates/*.html")
+
+	apiRoutes := router.Group("/api")
 	{
-		articles.GET("/", articleController.FindAll)
-		articles.POST("/", articleController.Save)
+		apiRoutes.GET("/ping", func(ctx *gin.Context) {
+			ctx.JSON(http.StatusOK, gin.H{
+				"message": "pong",
+			})
+		})
+
+		articles := apiRoutes.Group("articles")
+		{
+			articles.GET("/", articleController.FindAll)
+			articles.POST("/", articleController.Save)
+		}
 	}
 
-	router.GET("/ping", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	webRoutes := router.Group("")
+	{
+		webRoutes.GET("/", articleController.ShowAll)
+	}
 
 	router.Run(":8000")
 }
