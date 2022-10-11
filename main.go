@@ -34,13 +34,8 @@ func main() {
 
 	articles := router.Group("articles")
 	{
-		articles.GET("/", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, articleController.FindAll())
-		})
-
-		articles.POST("/", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusCreated, articleController.Save(ctx))
-		})
+		articles.GET("/", articleController.FindAll)
+		articles.POST("/", articleController.Save)
 	}
 
 	router.GET("/ping", func(ctx *gin.Context) {

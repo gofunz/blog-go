@@ -17,7 +17,13 @@ Content-Type: {{contentType}}
 Cache-Control: "no-cache"
 
 {
-    "title": "My {{$randomInt 1 10000}} article",
+    "title": "My {{$randomInt 1 10000}} article cool",
     "description": "Yo ~ {{$randomInt 1 10000}}",
-    "content": "Total visits {{$randomInt 1 10000}} ."
+    "content": "Total visits {{$randomInt 1 10000}} .",
+    "author": {
+        "firstname": "John {{$randomInt 100 1000}}",
+        "lastname": "Validmer {{$randomInt 1 10}}",
+        "age": {{$randomInt 20 130}},
+        "email": "cooper.{{$randomInt 1 1000}}@localhost.com"
+    }
 }
